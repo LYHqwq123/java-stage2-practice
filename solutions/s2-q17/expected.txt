@@ -1,0 +1,2 @@
+用户ID：zhangsan，邮箱：zhangsan@example.com
+用户ID：lisi，邮箱：lisi@gameschool.com

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN" data-stage="2">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#087c68">
+  <meta name="description" content="Java 阶段二题库：零基础详解、参考答案、真正的浏览器编译与运行。">
+  <title>Java 阶段二 · 练习工作台</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/style.css">
+  <script defer src="./assets/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">跳到练习区</a>
+  <header class="topbar">
+    <a class="brand" href="./"><span class="brand-mark">J<span>;</span></span><span>Java <strong>练习工作台</strong><small id="stage-label">阶段二 · 面向对象进阶</small></span></a>
+    <nav class="top-actions" aria-label="学习资料"><a id="answer-pdf" class="quiet-link" href="./downloads/阶段二答案.pdf" target="_blank" rel="noopener">答案 PDF ↗</a><a id="guide-pdf" class="outline-link" href="./downloads/阶段二零基础详解.pdf" target="_blank" rel="noopener">零基础详解 PDF ↗</a></nav>
+  </header>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="题目导航">
+      <div class="sidebar-head"><span class="eyebrow">YOUR PRACTICE</span><h1 id="course-title">从第一行 Java 开始</h1><p id="course-subtitle">读题、动手、运行，再理解。</p></div>
+      <div class="progress-box"><div><span>学习进度</span><strong id="progress-text">0 / 0</strong></div><progress id="progress" max="1" value="0" aria-label="完成题目进度"></progress></div>
+      <label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索题号、知识点…" aria-label="搜索题目"></label>
+      <div class="filter-row"><select id="concept-filter" aria-label="按知识点筛选"><option value="">全部知识点</option></select><button id="unfinished-filter" class="filter-button" aria-pressed="false">未完成</button></div>
+      <p id="list-count" class="list-count"></p>
+      <div id="question-list" class="question-list" role="navigation" aria-label="选择题目"><p class="muted">正在加载题库…</p></div>
+      <details class="study-route"><summary>零基础学习顺序</summary><ol id="lesson-list"></ol><button class="text-button open-lessons">打开完整入门课 →</button></details>
+      <p class="local-note">草稿与进度自动保存在此浏览器。</p>
+    </aside>
+    <main id="workspace" class="workspace" tabindex="-1">
+      <div id="load-error" class="error-banner" role="alert" hidden></div>
+      <div class="question-topline"><div><span id="question-index" class="eyebrow">STAGE 01</span><h2 id="question-title">准备好，开始练习</h2></div><button id="complete-button" class="complete-button" aria-pressed="false">○ 标记学会</button></div>
+      <div id="concept-tags" class="tags"></div>
+      <div class="work-grid">
+        <section class="reading-panel" aria-label="题目与讲解">
+          <div class="tabs" role="tablist" aria-label="阅读内容"><button id="tab-question" class="tab active" role="tab" aria-selected="true" aria-controls="panel-question" data-tab="question">题目</button><button id="tab-guide" class="tab" role="tab" aria-selected="false" aria-controls="panel-guide" data-tab="guide">零基础详解</button><button id="tab-answer" class="tab" role="tab" aria-selected="false" aria-controls="panel-answer" data-tab="answer">参考答案</button></div>
+          <div id="panel-question" class="reading-content" role="tabpanel" aria-labelledby="tab-question">
+            <div class="section-label">本题任务</div><div id="question-prompt" class="question-prompt"></div>
+            <div class="sample-block"><div class="section-label">示例输入 <button id="use-sample" class="text-button">填入输入区</button></div><pre id="sample-input"></pre><div class="section-label">参考输出</div><pre id="sample-output"></pre></div>
+            <div class="tip"><span>小提示</span><p>先独立写一遍。遇到困难时，打开「零基础详解」；完成后再核对答案。</p></div>
+          </div>
+          <div id="panel-guide" class="reading-content" role="tabpanel" aria-labelledby="tab-guide" hidden><div class="section-label">怎么想到这一步</div><p id="approach"></p><ol id="explanation" class="explanation"></ol><div class="section-label">容易出错的地方</div><ul id="pitfalls"></ul><div class="section-label">再练一小步</div><ul id="exercises"></ul></div>
+          <div id="panel-answer" class="reading-content" role="tabpanel" aria-labelledby="tab-answer" hidden><p class="answer-note">下面是适合大学基础课程的参考写法。先理解每一步，再自己复写。</p><div class="answer-actions"><button id="load-answer" class="small-button">载入答案到编辑器</button><button id="copy-answer" class="text-button">复制答案</button></div><pre class="answer-code"><code id="answer-code"></code></pre></div>
+          <div class="question-navigation"><button id="previous" class="text-button">← 上一题</button><button id="next" class="text-button">下一题 →</button></div>
+        </section>
+        <section class="practice-panel" aria-label="Java 编译练习">
+          <div class="editor-bar"><span><span class="code-dot"></span><strong id="file-name">Main.java</strong></span><div><span id="save-status">自动保存</span><button id="download-code" class="icon-button" title="下载当前 Java 文件" aria-label="下载当前 Java 文件">↓</button><button id="reset-code" class="icon-button" title="重置为练习模板" aria-label="重置为练习模板">↺</button></div></div>
+          <label class="sr-only" for="editor">Java 源代码编辑器</label><textarea id="editor" class="code-editor" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off" aria-describedby="editor-help"></textarea>
+          <div class="editor-footer"><span id="editor-help">Java 8 · Tab 缩进</span><span id="line-count">1 行</span></div>
+          <div class="run-bar"><button id="run-button" class="primary-button"><span aria-hidden="true">▶</span> 编译并运行 <kbd>Ctrl ↵</kbd></button><button id="stop-button" class="small-button" hidden>停止</button><button id="test-button" class="small-button">检查样例</button></div>
+          <div class="io-grid"><div class="input-area"><label for="stdin">标准输入 <span>Scanner 从这里读取</span></label><textarea id="stdin" spellcheck="false" placeholder="每行一组输入；无输入题可留空。"></textarea></div><div class="output-area"><div class="output-heading"><span>运行结果</span><span id="run-status" class="run-status" role="status" aria-live="polite">尚未运行</span></div><pre id="stdout" tabindex="0" aria-label="程序标准输出">点击「编译并运行」，查看真实结果。</pre></div></div>
+          <details id="diagnostic-details" class="diagnostics" hidden><summary id="diagnostic-title">编译信息与错误</summary><pre id="diagnostics"></pre></details>
+          <p id="runtime-note" class="runtime-note">真实 Java 编译与运行在浏览器中完成。首次运行需联网加载 Java 环境；无需安装或密钥。</p>
+        </section>
+      </div>
+      <footer class="workspace-footer"><button class="text-button open-lessons">零基础入门课 ↗</button><a href="https://cheerpj.com/" target="_blank" rel="noopener">Java runtime powered by CheerpJ ↗</a></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <dialog id="lessons-dialog" aria-labelledby="lessons-heading"><div class="dialog-heading"><div><span class="eyebrow">START FROM ZERO</span><h2 id="lessons-heading">零基础入门课</h2></div><button id="close-lessons" class="small-button">关闭 ×</button></div><div id="lesson-content"></div><details class="course-notes"><summary>题库整理说明与约定</summary><ul id="course-notes"></ul></details></dialog>
+</body>
+</html>
